@@ -1,9 +1,3 @@
-//
-//  MySwiftUIVideoSDKApp.swift
-//  MySwiftUIVideoSDK
-//
-//
-
 import SwiftUI
 
 @main

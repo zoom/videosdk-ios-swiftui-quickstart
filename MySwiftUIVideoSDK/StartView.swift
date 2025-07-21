@@ -1,9 +1,3 @@
-//
-//  StartView.swift
-//  MySwiftUIVideoSDKApp
-//
-//
-
 import SwiftUI
 import ZoomVideoSDK
 
@@ -13,7 +7,12 @@ struct StartView: View {
     var body: some View {
         NavigationStack {
             VStack {
-                NavigationLink("Start Session", destination: SessionView())
+                NavigationLink(destination: SessionView()) {
+                    Text("Join Session")
+                        .foregroundStyle(Color.blue)
+                        .padding()
+                        .background(Color.white.clipShape(.rect(cornerRadius: 8)))
+                }
             }
             .padding()
         }
@@ -27,9 +26,10 @@ struct StartView: View {
 extension StartView {
     @Observable @MainActor
     class ViewModel {
+        
         // MARK: VSDK setup
+        
         func setupSDK() {
-            // (1)
             let initParams = ZoomVideoSDKInitParams()
             initParams.domain = "zoom.us"
             let sdkInitReturnStatus = ZoomVideoSDK.shareInstance()?.initialize(initParams)
