@@ -1,20 +1,21 @@
-> :warning: The following sample application is a personal, open-source project shared by the app creator and not an officially supported Zoom Video Communications, Inc. sample application. Zoom Video Communications, Inc., its employees and affiliates are not responsible for the use and maintenance of this application. Please use this sample application for inspiration, exploration and experimentation at your own risk and enjoyment. You may reach out to the app creator and broader Zoom Developer community on https://devforum.zoom.us/ for technical discussion and assistance, but understand there is no service level agreement support for this application. Thank you and happy coding!
+# Zoom VideoSDK iOS SwiftUI Demo
 
-# Sample App for Zoom Video SDK (iOS)
+Use of this sample app is subject to our [Terms of Use](https://explore.zoom.us/en/video-sdk-terms/).
 
-The Zoom Video SDK for iOS lets you build custom video meeting applications with access to raw video and audio data, enabling highly-interactive, custom user experiences. This repository contains a completed sample app written in SwiftUI. To see the skeleton sample app template that you can implement as you follow the iOS Video SDK guide, please check out the `template` branch.
+The Zoom Video SDK for iOS lets you build custom video meeting applications with access to raw video and audio data, enabling highly-interactive, custom user experiences. This repository contains a completed sample app written in Swift with SwiftUI. 
 
 ## Screenshots
 
-Start View
+<p>Start View</p>
+<img src="https://github.com/user-attachments/assets/47e3e000-01fc-4194-a5fa-57f97afb65ce" width="320">
+<img src="https://github.com/user-attachments/assets/b6efc031-9002-4bf7-a8f4-29bff8326252" width="320">
 
-![start](https://github.com/user-attachments/assets/dd776914-af65-4e4b-bd31-b228cc3d4416)
+<br><br>
 
-Session View
+<p>Session View</p>
 
-![video on](https://github.com/user-attachments/assets/505b8d02-e399-4c5e-a384-928b2cc216dc)
-
-![video off](https://github.com/user-attachments/assets/f1b9bb5d-d610-4a51-bdc4-34e14b2d351a)
+<img src="https://github.com/user-attachments/assets/eac551f4-88c6-41e1-b58e-2d2d0497f405" width="320">
+<img src="https://github.com/user-attachments/assets/d3dc5b3f-2c39-4943-9f5e-1ea4c2579900" width="320">
 
 
 ## Features
