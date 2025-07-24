@@ -3,6 +3,10 @@ import ZoomVideoSDK
 
 extension SessionView {
     class ViewModel: NSObject, ObservableObject, ZoomVideoSDKDelegate {
+        // Error popup
+        @Published var errorTitle: String = "Error"
+        var errorMessage: String = "Message"
+        
         // Local user
         @MainActor weak var localView: UIView?
         @Published var joinSessionFailed: Bool = false
@@ -17,9 +21,10 @@ extension SessionView {
         // MARK: Session Information
         // TODO: Ensure that you do not hard code JWT or any other confidential credentials in your production app.
         // Details: https://developers.zoom.us/docs/video-sdk/ios/sessions/#create-and-join-a-session
-        let token = <#JWT#>
         let sessionName = <#Session Name#> // Also known as tpc in JWT
         let userName = <#Username#> // Display name
+        let sdkKey = <#SDK Key#>
+        let sdkSecret = <#SDK Secret#>
         //let sessionPassword = <#Password if any#>
         
         @MainActor func attachLocalVideo(to view: UIView) {
@@ -48,7 +53,6 @@ extension SessionView {
         
         @MainActor func updateRemoteVideo(to view: UIView, index: Int) {
             guard let index = remoteUsers.indices.first(where: { $0 == index }) else { return }
-            guard let index = remoteUsers.indices.first(where: { $0 == index }) else { return }
             if let currentUserVideoCanvas = self.remoteUsers[index].getVideoCanvas(), let videoStatus = currentUserVideoCanvas.videoStatus() {
                 if videoStatus.on {
                     currentUserVideoCanvas.subscribe(with: view, aspectMode: .panAndScan, andResolution: ._Auto)
@@ -58,25 +62,32 @@ extension SessionView {
             }
         }
         
-        func joinSession() {
+        func joinSession() async {
             ZoomVideoSDK.shareInstance()?.delegate = self
             
             let sessionContext = ZoomVideoSDKSessionContext()
-            sessionContext.token = token
-            sessionContext.sessionName = sessionName
-            sessionContext.userName = userName
-            let videoOption = ZoomVideoSDKVideoOptions()
-            videoOption.localVideoOn = true
-            sessionContext.videoOption = videoOption
-            //sessionContext.sessionPassword = sessionPassword // Uncomment if your session requires password
             
-            // Join Session
-            if let session = ZoomVideoSDK.shareInstance()?.joinSession(sessionContext) {
+            do {
+                sessionContext.token = try await generateSignature(sessionName: sessionName, role: 1, sdkKey: sdkKey, sdkSecret: sdkSecret)
+                sessionContext.sessionName = sessionName
+                sessionContext.userName = userName
+                let videoOption = ZoomVideoSDKVideoOptions()
+                videoOption.localVideoOn = true
+                sessionContext.videoOption = videoOption
+                //sessionContext.sessionPassword = sessionPassword // Uncomment if your session requires password
                 
-            } else {
-                print("Join session failed")
+                // Join Session
+                if let session = ZoomVideoSDK.shareInstance()?.joinSession(sessionContext) {
+                    print("Session object: \(session)")
+                } else {
+                    print("Join session failed")
+                    joinSessionFailed = true
+                }
+            } catch {
+                print("Error generating signature: \(error)")
                 joinSessionFailed = true
             }
+            return
         }
         
         func onError(_ ErrorType: ZoomVideoSDKError, detail details: Int) {
@@ -84,6 +95,7 @@ extension SessionView {
             if !inSession {
                 joinSessionFailed = true
                 leftSession = true
+                errorMessage = "Failed to join session with error: \(ErrorType.rawValue)"
             }
         }
         
@@ -118,7 +130,6 @@ extension SessionView {
         }
         
         func onUserVideoStatusChanged(_ helper: ZoomVideoSDKVideoHelper?, user: [ZoomVideoSDKUser]?) {
-            
             if let userArray = user, let myself = ZoomVideoSDK.shareInstance()?.getSession()?.getMySelf() {
                 for user in userArray {
                     if (user.getID() == myself.getID()) {

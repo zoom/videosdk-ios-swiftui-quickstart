@@ -84,9 +84,13 @@ struct SessionView: View {
             NavigationStack {
                 Text("Loading session...")
                     .task() {
-                        viewModel.joinSession()
-                    }.alert("Error", isPresented: $viewModel.joinSessionFailed, actions: {}, message: {
-                        Text("Join session failed")
+                        await viewModel.joinSession()
+                    }.alert("Error", isPresented: $viewModel.joinSessionFailed, actions: {
+                        Button(action: {
+                            dismiss()
+                        }) { Text("OK") }
+                    }, message: {
+                        Text("\(viewModel.errorMessage)")
                     })
                     .font(.title)
                     .navigationBarBackButtonHidden(true)

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		81C0674D2DE83424006CA95A /* ZoomVideoSDK-iOS in Frameworks */ = {isa = PBXBuildFile; productRef = 81C0674C2DE83424006CA95A /* ZoomVideoSDK-iOS */; };
+		E5DF7F3C2E31D12E00DA040D /* JWTKit in Frameworks */ = {isa = PBXBuildFile; productRef = E5DF7F3B2E31D12E00DA040D /* JWTKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				81C0674D2DE83424006CA95A /* ZoomVideoSDK-iOS in Frameworks */,
+				E5DF7F3C2E31D12E00DA040D /* JWTKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -71,6 +73,7 @@
 			name = MySwiftUIVideoSDK;
 			packageProductDependencies = (
 				81C0674C2DE83424006CA95A /* ZoomVideoSDK-iOS */,
+				E5DF7F3B2E31D12E00DA040D /* JWTKit */,
 			);
 			productName = MySwiftUIVideoSDK;
 			productReference = 81C067382DE833AE006CA95A /* MySwiftUIVideoSDK.app */;
@@ -102,6 +105,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				81C0674B2DE83424006CA95A /* XCRemoteSwiftPackageReference "zoom-video-sdk-iOS" */,
+				E5DF7F3A2E31D12E00DA040D /* XCRemoteSwiftPackageReference "jwt-kit" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 81C067392DE833AE006CA95A /* Products */;
@@ -351,6 +355,14 @@
 				kind = branch;
 			};
 		};
+		E5DF7F3A2E31D12E00DA040D /* XCRemoteSwiftPackageReference "jwt-kit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/vapor/jwt-kit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.2.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -358,6 +370,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 81C0674B2DE83424006CA95A /* XCRemoteSwiftPackageReference "zoom-video-sdk-iOS" */;
 			productName = "ZoomVideoSDK-iOS";
+		};
+		E5DF7F3B2E31D12E00DA040D /* JWTKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E5DF7F3A2E31D12E00DA040D /* XCRemoteSwiftPackageReference "jwt-kit" */;
+			productName = JWTKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
