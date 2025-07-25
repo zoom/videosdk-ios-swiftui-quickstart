@@ -4,13 +4,13 @@ import ZoomVideoSDK
 struct SessionView: View {
     @StateObject private var viewModel = ViewModel()
     @Environment(\.dismiss) var dismiss
-    
+
     var body: some View {
         if viewModel.inSession {
             NavigationStack {
                 ScrollView {
-                    VStack() {
-                        VStack() {
+                    VStack {
+                        VStack {
                             if viewModel.videoOn {
                                 LocalVideoView(viewModel: viewModel)
                             } else {
@@ -21,8 +21,8 @@ struct SessionView: View {
                         .frame(maxWidth: .infinity)
                         .padding()
                         ForEach(viewModel.remoteUsers.indices, id: \.self) { index in
-                            VStack() {
-                                if (viewModel.remoteUsers[index].getVideoCanvas()?.videoStatus()?.on ?? false) {
+                            VStack {
+                                if viewModel.remoteUsers[index].getVideoCanvas()?.videoStatus()?.on ?? false {
                                     RemoteVideoView(viewModel: viewModel, index: index)
                                 } else {
                                     PlaceholderView(name: viewModel.remoteUsers[index].getName() ?? "")
@@ -54,7 +54,7 @@ struct SessionView: View {
                             viewModel.toggleAudio()
                         }, label: {
                             Label {
-                                Text(viewModel.audioOn ? "Mute" : "Sound On")
+                                Text(viewModel.audioOn ? "Mute" : "Unmute")
                             } icon: {
                                 Image(systemName: viewModel.audioOn ? "mic.slash" : "mic")
                                     .frame(width: 24, height: 24)
@@ -83,7 +83,7 @@ struct SessionView: View {
         } else {
             NavigationStack {
                 Text("Loading session...")
-                    .task() {
+                    .task {
                         await viewModel.joinSession()
                     }.alert("Error", isPresented: $viewModel.joinSessionFailed, actions: {
                         Button(action: {
@@ -114,9 +114,9 @@ public struct VerticalLabelStyle: LabelStyle {
 
 public struct PlaceholderView: View {
     @State var name: String
-    
+
     public var body: some View {
-        VStack() {
+        VStack {
             Image(systemName: "person.fill")
                 .foregroundStyle(.white)
             Text(name)
@@ -128,14 +128,14 @@ public struct PlaceholderView: View {
 
 public struct LocalVideoView: UIViewRepresentable {
     @State var viewModel: SessionView.ViewModel
-    
-    public func makeUIView(context: Context) -> UIView {
+
+    public func makeUIView(context _: Context) -> UIView {
         let videoView = UIView()
         viewModel.attachLocalVideo(to: videoView)
         return videoView
     }
-    
-    public func updateUIView(_ uiView: UIView, context: Context) {
+
+    public func updateUIView(_ uiView: UIView, context _: Context) {
         viewModel.updateLocalVideo(to: uiView)
     }
 }
@@ -143,13 +143,13 @@ public struct LocalVideoView: UIViewRepresentable {
 public struct RemoteVideoView: UIViewRepresentable {
     @State var viewModel: SessionView.ViewModel
     @State var index: Int
-    
-    public func makeUIView(context: Context) -> UIView {
+
+    public func makeUIView(context _: Context) -> UIView {
         let videoView = UIView()
         return videoView
     }
-    
-    public func updateUIView(_ uiView: UIView, context: Context) {
+
+    public func updateUIView(_ uiView: UIView, context _: Context) {
         viewModel.updateRemoteVideo(to: uiView, index: index)
     }
 }
