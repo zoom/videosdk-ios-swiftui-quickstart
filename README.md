@@ -1,0 +1,28 @@
+# Zoom VideoSDK iOS SwiftUI Demo
+
+Use of this sample app is subject to our [Terms of Use](https://explore.zoom.us/en/video-sdk-terms/).
+
+The Zoom Video SDK for iOS lets you build custom video meeting applications with access to raw video and audio data, enabling highly-interactive, custom user experiences. This repository contains a completed sample app written in Swift with SwiftUI. 
+
+## Screenshots
+
+<p>Start View</p>
+<img src="https://github.com/user-attachments/assets/47e3e000-01fc-4194-a5fa-57f97afb65ce" width="320">
+<img src="https://github.com/user-attachments/assets/b6efc031-9002-4bf7-a8f4-29bff8326252" width="320">
+
+<br><br>
+
+<p>Session View</p>
+
+<img src="https://github.com/user-attachments/assets/eac551f4-88c6-41e1-b58e-2d2d0497f405" width="320">
+<img src="https://github.com/user-attachments/assets/d3dc5b3f-2c39-4943-9f5e-1ea4c2579900" width="320">
+
+
+## Features
+This repository demonstrates the basic capabilities of the Video SDK.
+- Creating/joining a session
+- Starting/stopping video
+- Muting/unmuting audio
+
+## Need Help?
+If you're looking for help, try Developer Support or our Developer Forums. Priority support is also available with Zoom Premier Developer Support plans.
