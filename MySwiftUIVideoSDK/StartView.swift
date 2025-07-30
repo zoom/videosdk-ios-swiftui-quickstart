@@ -20,23 +20,21 @@ struct StartView: View {
             viewModel.setupSDK()
         }
     }
-    
 }
 
 extension StartView {
     @Observable @MainActor
     class ViewModel {
-        
         // MARK: VSDK setup
-        
+
         func setupSDK() {
             let initParams = ZoomVideoSDKInitParams()
             initParams.domain = "zoom.us"
             let sdkInitReturnStatus = ZoomVideoSDK.shareInstance()?.initialize(initParams)
-            
+
             switch sdkInitReturnStatus {
             case .Errors_Success:
-                print ("SDK initialization succeeded")
+                print("SDK initialization succeeded")
             default:
                 if let error = sdkInitReturnStatus {
                     print("SDK initialization failed: \(error)")
