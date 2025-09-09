@@ -22,10 +22,10 @@ extension SessionView {
 
         // TODO: Ensure that you do not hard code JWT or any other confidential credentials in your production app.
         // Details: https://developers.zoom.us/docs/video-sdk/ios/sessions/#create-and-join-a-session
-        let sessionName = "Test" // Also known as tpc in JWT
-        let userName = "iOS" // Display name
         let sdkKey = <#SDK Key#>
         let sdkSecret = <#SDK Secret#>
+        let sessionName = <#Session Name#> // Also known as tpc in JWT
+        let userName = <#Username#> // Display name
         let sessionPassword: String = "" // If needed
 
         @MainActor func attachLocalVideo(to view: UIView) {

@@ -1,5 +1,4 @@
 import SwiftUI
-import ZoomVideoSDK
 
 struct SessionView: View {
     @StateObject private var viewModel = ViewModel()
