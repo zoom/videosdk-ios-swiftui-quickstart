@@ -67,7 +67,7 @@ extension SessionView {
             ZoomVideoSDK.shareInstance()?.delegate = self
             let sessionContext = ZoomVideoSDKSessionContext()
             do {
-                sessionContext.token = try await generateSignature(sessionName: sessionName, role: 1, sdkKey: sdkKey, sdkSecret: sdkSecret)
+                sessionContext.token = "" // accept input from user here 
                 sessionContext.sessionName = sessionName
                 sessionContext.userName = userName
                 let videoOption = ZoomVideoSDKVideoOptions()
