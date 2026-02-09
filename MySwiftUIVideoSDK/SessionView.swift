@@ -41,7 +41,7 @@ struct SessionView: View {
                             viewModel.toggleVideo()
                         }, label: {
                             Label {
-                                Text(viewModel.videoOn ? "Stop Video" : "Start Video")
+                                Text(viewModel.videoOn ? "Stop Video" : "Start Video").fixedSize()
                             } icon: {
                                 Image(systemName: viewModel.videoOn ? "video.slash" : "video")
                                     .frame(width: 24, height: 24)
@@ -53,7 +53,7 @@ struct SessionView: View {
                             viewModel.toggleAudio()
                         }, label: {
                             Label {
-                                Text(viewModel.audioOn ? "Mute" : "Unmute")
+                                Text(viewModel.audioOn ? "Mute" : "Unmute").fixedSize()
                             } icon: {
                                 Image(systemName: viewModel.audioOn ? "mic.slash" : "mic")
                                     .frame(width: 24, height: 24)
@@ -66,7 +66,7 @@ struct SessionView: View {
                             dismiss()
                         }, label: {
                             Label {
-                                Text("End Session")
+                                Text("End Session").fixedSize()
                             } icon: {
                                 Image(systemName: "phone.down")
                                     .frame(width: 24, height: 24)
