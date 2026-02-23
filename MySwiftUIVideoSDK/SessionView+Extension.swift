@@ -2,14 +2,18 @@ import SwiftUI
 import ZoomVideoSDK
 
 extension SessionView {
-    class ViewModel: NSObject, ObservableObject, ZoomVideoSDKDelegate {
+    @MainActor
+    class ViewModel: NSObject, ObservableObject, @preconcurrency ZoomVideoSDKDelegate {
         // Error popup
         @Published var errorTitle: String = "Error"
         var errorMessage: String = "Message"
 
         // Local user
+        @Published var userInputJWT = ""
+        @Published var shouldJoin = false
         @MainActor weak var localView: UIView?
         @Published var joinSessionFailed: Bool = false
+        @Published var inJWTInput: Bool = true
         @Published var inSession: Bool = false
         @Published var leftSession: Bool = false
         @Published var videoOn: Bool = false
@@ -25,9 +29,9 @@ extension SessionView {
          You should sign your JWT with a backend service in a production use-case. For faster JWT generation, you can navigate checkout the JWTGenerator.swift under Script folder and its README for more details on how to consume it. Once you got the token, you can simple copy and paste it below.
          Ensure that the sessionName matches the session name used to generate the JWT Token.
          */
-        let jwtToken = <#Your JWT Token#>
-        let sessionName = <#Session Name#> // Also known as tpc in JWT
-        let userName = <#Username#> // Display name
+        let jwtToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHBfa2V5IjoibllDdlNvUzk2bUdyancwUlYwNEoyYjdPa3pMNUl3ak1ZNHU2IiwidHBjIjoiVGVzdFNlc3Npb24xMjM0NSIsInJvbGVfdHlwZSI6MSwiZXhwIjoxNzcxODY5MTUyLCJ2ZXJzaW9uIjoxLCJpYXQiOjE3NzE4NjE5NTJ9.pLVh7ioom2Sk3DFXT8RoyCn1aq9j68EtkBD6-UboRLE" // Leave this as empty if you choose to copy and paste your generated JWT token directly in the sample app's alert box after clicking on "Join Session"
+        let sessionName = "TestSession12345" // Also known as tpc in JWT
+        let userName = "Test" // Display name
         let sessionPassword: String = "" // If needed
 
         @MainActor func attachLocalVideo(to view: UIView) {
@@ -68,29 +72,26 @@ extension SessionView {
         func joinSession() async {
             ZoomVideoSDK.shareInstance()?.delegate = self
             let sessionContext = ZoomVideoSDKSessionContext()
-            do {
-                sessionContext.token = jwtToken
-                sessionContext.sessionName = sessionName
-                sessionContext.userName = userName
-                let videoOption = ZoomVideoSDKVideoOptions()
-                videoOption.localVideoOn = true
-                sessionContext.videoOption = videoOption
-                let audioOtion = ZoomVideoSDKAudioOptions()
-                audioOtion.mute = true
-                sessionContext.audioOption = audioOtion
-                if !sessionPassword.isEmpty {
-                    sessionContext.sessionPassword = sessionPassword
+            sessionContext.token = jwtToken.isEmpty ? userInputJWT : jwtToken
+            sessionContext.sessionName = sessionName
+            sessionContext.userName = userName
+            let videoOption = ZoomVideoSDKVideoOptions()
+            videoOption.localVideoOn = true
+            sessionContext.videoOption = videoOption
+            let audioOtion = ZoomVideoSDKAudioOptions()
+            audioOtion.mute = true
+            sessionContext.audioOption = audioOtion
+            if !sessionPassword.isEmpty {
+                sessionContext.sessionPassword = sessionPassword
+            }
+            // Join Session
+            if let session = ZoomVideoSDK.shareInstance()?.joinSession(sessionContext) {
+                print("Session object: \(session)")
+            } else {
+                print("Join session failed")
+                DispatchQueue.main.async {
+                    self.joinSessionFailed = true
                 }
-                // Join Session
-                if let session = ZoomVideoSDK.shareInstance()?.joinSession(sessionContext) {
-                    print("Session object: \(session)")
-                } else {
-                    print("Join session failed")
-                    joinSessionFailed = true
-                }
-            } catch {
-                print("Error generating signature: \(error)")
-                joinSessionFailed = true
             }
         }
 

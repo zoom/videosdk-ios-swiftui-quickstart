@@ -82,8 +82,24 @@ struct SessionView: View {
         } else {
             NavigationStack {
                 Text("Loading session...")
-                    .task {
+                    .font(.title)
+                    .navigationBarBackButtonHidden(true)
+                    .alert("JWT Token Required", isPresented: $viewModel.inJWTInput) {
+                        TextField("Enter your JWT Token", text: $viewModel.userInputJWT)
+                            .disableAutocorrection(true)
+                        Button("Join") {
+                            viewModel.shouldJoin = true
+                        }
+                        Button("Cancel", role: .cancel) {
+                            dismiss()
+                        }
+                    } message: {
+                        Text("You can choose to copy and paste your generated JWT Token here OR leave it as empty if you have added it in the SessionView+Extension jwtToken variable")
+                    }
+                    .task(id: viewModel.shouldJoin) {
+                        guard viewModel.shouldJoin else { return }
                         await viewModel.joinSession()
+                        viewModel.shouldJoin = false
                     }.alert("Error", isPresented: $viewModel.joinSessionFailed, actions: {
                         Button(action: {
                             dismiss()
@@ -91,11 +107,10 @@ struct SessionView: View {
                     }, message: {
                         Text("\(viewModel.errorMessage)")
                     })
-                    .font(.title)
-                    .navigationBarBackButtonHidden(true)
             }
         }
     }
+    
 }
 
 #Preview {
