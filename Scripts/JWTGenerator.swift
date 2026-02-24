@@ -11,6 +11,8 @@ import CryptoKit
 ///
 /// Example:
 ///   swift Scripts/JWTGenerator.swift TestSession12345 1 YourSDKKey YourSDKSecret
+///   OR
+///   Enter the info in the .env file and use swift Scripts/JWTGenerator.swift
 
 private func defaultDotEnvPath() -> String {
     let scriptPath = #file

@@ -26,12 +26,13 @@ extension SessionView {
 
         /*
          TODO: Enter the following variables needed to initialize the VSDK and to start/join a session
-         You should sign your JWT with a backend service in a production use-case. For faster JWT generation, you can navigate checkout the JWTGenerator.swift under Script folder and its README for more details on how to consume it. Once you got the token, you can simple copy and paste it below.
+         You should sign your JWT with a backend service in a production use-case. For faster JWT generation, you can navigate checkout the JWTGenerator.swift under Script folder and its README for more details on how to consume it.
+         Once you got the token, you can simple copy and paste it below.
          Ensure that the sessionName matches the session name used to generate the JWT Token.
          */
-        let jwtToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHBfa2V5IjoibllDdlNvUzk2bUdyancwUlYwNEoyYjdPa3pMNUl3ak1ZNHU2IiwidHBjIjoiVGVzdFNlc3Npb24xMjM0NSIsInJvbGVfdHlwZSI6MSwiZXhwIjoxNzcxODY5MTUyLCJ2ZXJzaW9uIjoxLCJpYXQiOjE3NzE4NjE5NTJ9.pLVh7ioom2Sk3DFXT8RoyCn1aq9j68EtkBD6-UboRLE" // Leave this as empty if you choose to copy and paste your generated JWT token directly in the sample app's alert box after clicking on "Join Session"
-        let sessionName = "TestSession12345" // Also known as tpc in JWT
-        let userName = "Test" // Display name
+        let jwtToken = "" // Leave this as empty if you choose to copy and paste your generated JWT token directly in the sample app's alert box after clicking on "Join Session"
+        let sessionName = "" // Also known as tpc in JWT
+        let userName = "" // Display name
         let sessionPassword: String = "" // If needed
 
         @MainActor func attachLocalVideo(to view: UIView) {
