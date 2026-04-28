@@ -9,10 +9,6 @@
 /* Begin PBXBuildFile section */
 		708FEB4C2E68330A00B31EE6 /* ZoomVideoSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 708FEB4B2E68330A00B31EE6 /* ZoomVideoSDK */; };
 		708FEB4E2E68330A00B31EE6 /* ZoomTask in Frameworks */ = {isa = PBXBuildFile; productRef = 708FEB4D2E68330A00B31EE6 /* ZoomTask */; };
-		708FEB502E68330A00B31EE6 /* CptShare in Frameworks */ = {isa = PBXBuildFile; productRef = 708FEB4F2E68330A00B31EE6 /* CptShare */; };
-		708FEB522E68330A00B31EE6 /* zoomcml in Frameworks */ = {isa = PBXBuildFile; productRef = 708FEB512E68330A00B31EE6 /* zoomcml */; };
-		708FEB542E68330A00B31EE6 /* zm_annoter_dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 708FEB532E68330A00B31EE6 /* zm_annoter_dynamic */; };
-		708FEB562E68330A00B31EE6 /* Whiteboard in Frameworks */ = {isa = PBXBuildFile; productRef = 708FEB552E68330A00B31EE6 /* Whiteboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,10 +30,6 @@
 			files = (
 				708FEB4C2E68330A00B31EE6 /* ZoomVideoSDK in Frameworks */,
 				708FEB4E2E68330A00B31EE6 /* ZoomTask in Frameworks */,
-				708FEB502E68330A00B31EE6 /* CptShare in Frameworks */,
-				708FEB522E68330A00B31EE6 /* zoomcml in Frameworks */,
-				708FEB542E68330A00B31EE6 /* zm_annoter_dynamic in Frameworks */,
-				708FEB562E68330A00B31EE6 /* Whiteboard in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,10 +74,6 @@
 			packageProductDependencies = (
 				708FEB4B2E68330A00B31EE6 /* ZoomVideoSDK */,
 				708FEB4D2E68330A00B31EE6 /* ZoomTask */,
-				708FEB4F2E68330A00B31EE6 /* CptShare */,
-				708FEB512E68330A00B31EE6 /* zoomcml */,
-				708FEB532E68330A00B31EE6 /* zm_annoter_dynamic */,
-				708FEB552E68330A00B31EE6 /* Whiteboard */,
 			);
 			productName = MySwiftUIVideoSDK;
 			productReference = 81C067382DE833AE006CA95A /* MySwiftUIVideoSDK.app */;
@@ -378,26 +366,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 708FEB4A2E68330A00B31EE6 /* XCRemoteSwiftPackageReference "videosdk-ios" */;
 			productName = ZoomTask;
-		};
-		708FEB4F2E68330A00B31EE6 /* CptShare */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 708FEB4A2E68330A00B31EE6 /* XCRemoteSwiftPackageReference "videosdk-ios" */;
-			productName = CptShare;
-		};
-		708FEB512E68330A00B31EE6 /* zoomcml */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 708FEB4A2E68330A00B31EE6 /* XCRemoteSwiftPackageReference "videosdk-ios" */;
-			productName = zoomcml;
-		};
-		708FEB532E68330A00B31EE6 /* zm_annoter_dynamic */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 708FEB4A2E68330A00B31EE6 /* XCRemoteSwiftPackageReference "videosdk-ios" */;
-			productName = zm_annoter_dynamic;
-		};
-		708FEB552E68330A00B31EE6 /* Whiteboard */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 708FEB4A2E68330A00B31EE6 /* XCRemoteSwiftPackageReference "videosdk-ios" */;
-			productName = Whiteboard;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
