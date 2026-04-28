@@ -7,12 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D70470D12F39C99800DF6E54 /* ZoomVideoSDK in Frameworks */ = {isa = PBXBuildFile; productRef = D70470D02F39C99800DF6E54 /* ZoomVideoSDK */; };
-		D70470D32F39C99C00DF6E54 /* ZoomTask in Frameworks */ = {isa = PBXBuildFile; productRef = D70470D22F39C99C00DF6E54 /* ZoomTask */; };
+		D796C6012F4E13D000E09C9D /* ZoomTask in Frameworks */ = {isa = PBXBuildFile; productRef = D796C6002F4E13D000E09C9D /* ZoomTask */; };
+		D796C6032F4E13D300E09C9D /* ZoomVideoSDK in Frameworks */ = {isa = PBXBuildFile; productRef = D796C6022F4E13D300E09C9D /* ZoomVideoSDK */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		81C067382DE833AE006CA95A /* MySwiftUIVideoSDK.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MySwiftUIVideoSDK.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D796C5F92F4E13B700E09C9D /* ZoomTask.xcframework */ = {isa = PBXFileReference; expectedSignature = "AppleDeveloperProgram:BJ4HAAB9B3:Zoom Communications, Inc."; lastKnownFileType = wrapper.xcframework; name = ZoomTask.xcframework; path = "../../VSDK/iOS/zoom-video-sdk-iOS-2.4.12/Sample-Libs/lib/ZoomTask.xcframework"; sourceTree = "<group>"; };
+		D796C5FA2F4E13B700E09C9D /* ZoomVideoSDK.xcframework */ = {isa = PBXFileReference; expectedSignature = "AppleDeveloperProgram:BJ4HAAB9B3:Zoom Communications, Inc."; lastKnownFileType = wrapper.xcframework; name = ZoomVideoSDK.xcframework; path = "../../VSDK/iOS/zoom-video-sdk-iOS-2.4.12/Sample-Libs/lib/ZoomVideoSDK.xcframework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -28,8 +30,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D70470D32F39C99C00DF6E54 /* ZoomTask in Frameworks */,
-				D70470D12F39C99800DF6E54 /* ZoomVideoSDK in Frameworks */,
+				D796C6032F4E13D300E09C9D /* ZoomVideoSDK in Frameworks */,
+				D796C6012F4E13D000E09C9D /* ZoomTask in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,6 +58,8 @@
 		D70470CF2F39C99800DF6E54 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D796C5F92F4E13B700E09C9D /* ZoomTask.xcframework */,
+				D796C5FA2F4E13B700E09C9D /* ZoomVideoSDK.xcframework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -80,8 +84,8 @@
 			);
 			name = MySwiftUIVideoSDK;
 			packageProductDependencies = (
-				D70470D02F39C99800DF6E54 /* ZoomVideoSDK */,
-				D70470D22F39C99C00DF6E54 /* ZoomTask */,
+				D796C6002F4E13D000E09C9D /* ZoomTask */,
+				D796C6022F4E13D300E09C9D /* ZoomVideoSDK */,
 			);
 			productName = MySwiftUIVideoSDK;
 			productReference = 81C067382DE833AE006CA95A /* MySwiftUIVideoSDK.app */;
@@ -365,15 +369,15 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		D70470D02F39C99800DF6E54 /* ZoomVideoSDK */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 81C0674B2DE83424006CA95A /* XCRemoteSwiftPackageReference "zoom-video-sdk-iOS" */;
-			productName = ZoomVideoSDK;
-		};
-		D70470D22F39C99C00DF6E54 /* ZoomTask */ = {
+		D796C6002F4E13D000E09C9D /* ZoomTask */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 81C0674B2DE83424006CA95A /* XCRemoteSwiftPackageReference "zoom-video-sdk-iOS" */;
 			productName = ZoomTask;
+		};
+		D796C6022F4E13D300E09C9D /* ZoomVideoSDK */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 81C0674B2DE83424006CA95A /* XCRemoteSwiftPackageReference "zoom-video-sdk-iOS" */;
+			productName = ZoomVideoSDK;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
