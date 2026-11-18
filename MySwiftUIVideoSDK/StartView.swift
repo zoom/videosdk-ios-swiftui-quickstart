@@ -30,7 +30,7 @@ extension StartView {
         func setupSDK() {
             let initParams = ZoomVideoSDKInitParams()
             initParams.domain = "zoom.us"
-            let sdkInitReturnStatus = ZoomVideoSDK.shareInstance()?.initialize(initParams)
+            let sdkInitReturnStatus = ZoomVideoSDK.sharedInstance()?.initialize(initParams)
 
             switch sdkInitReturnStatus {
             case .Errors_Success:

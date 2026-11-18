@@ -40,7 +40,7 @@ extension SessionView {
         }
 
         @MainActor func updateLocalVideo(to _: UIView) {
-            guard let myUserVideoCanvas = ZoomVideoSDK.shareInstance()?.getSession()?.getMySelf()?.getVideoCanvas(), let myVideoIsOn = myUserVideoCanvas.videoStatus()?.on else { return }
+            guard let myUserVideoCanvas = ZoomVideoSDK.sharedInstance()?.getSession()?.getMySelf()?.getVideoCanvas(), let myVideoIsOn = myUserVideoCanvas.videoStatus()?.on else { return }
             if myVideoIsOn {
                 myUserVideoCanvas.subscribe(with: localView, aspectMode: .panAndScan, andResolution: ._Auto)
             } else {
@@ -71,7 +71,7 @@ extension SessionView {
         }
 
         func joinSession() async {
-            ZoomVideoSDK.shareInstance()?.delegate = self
+            ZoomVideoSDK.sharedInstance()?.delegate = self
             let sessionContext = ZoomVideoSDKSessionContext()
             sessionContext.token = jwtToken.isEmpty ? userInputJWT : jwtToken
             sessionContext.sessionName = sessionName
@@ -86,7 +86,7 @@ extension SessionView {
                 sessionContext.sessionPassword = sessionPassword
             }
             // Join Session
-            if let session = ZoomVideoSDK.shareInstance()?.joinSession(sessionContext) {
+            if let session = ZoomVideoSDK.sharedInstance()?.joinSession(sessionContext) {
                 print("Session object: \(session)")
             } else {
                 print("Join session failed")
@@ -113,7 +113,7 @@ extension SessionView {
 
         func onUserJoin(_: ZoomVideoSDKUserHelper?, users: [ZoomVideoSDKUser]?) {
             // Get remote user
-            if let userArray = users, let myself = ZoomVideoSDK.shareInstance()?.getSession()?.getMySelf() {
+            if let userArray = users, let myself = ZoomVideoSDK.sharedInstance()?.getSession()?.getMySelf() {
                 for user in userArray {
                     if user.getID() != myself.getID() {
                         remoteUsers.append(user)
@@ -124,7 +124,7 @@ extension SessionView {
 
         func onUserLeave(_: ZoomVideoSDKUserHelper?, users: [ZoomVideoSDKUser]?) {
             // Get remote user
-            if let userArray = users, let myself = ZoomVideoSDK.shareInstance()?.getSession()?.getMySelf() {
+            if let userArray = users, let myself = ZoomVideoSDK.sharedInstance()?.getSession()?.getMySelf() {
                 for user in userArray {
                     if user.getID() != myself.getID() {
                         remoteUsers.removeAll { remoteUser in
@@ -136,10 +136,10 @@ extension SessionView {
         }
 
         func onUserVideoStatusChanged(_: ZoomVideoSDKVideoHelper?, user: [ZoomVideoSDKUser]?) {
-            if let userArray = user, let myself = ZoomVideoSDK.shareInstance()?.getSession()?.getMySelf() {
+            if let userArray = user, let myself = ZoomVideoSDK.sharedInstance()?.getSession()?.getMySelf() {
                 for user in userArray {
                     if user.getID() == myself.getID() {
-                        if let myUserVideoCanvas = ZoomVideoSDK.shareInstance()?.getSession()?.getMySelf()?.getVideoCanvas(), let myVideoIsOn = myUserVideoCanvas.videoStatus()?.on {
+                        if let myUserVideoCanvas = ZoomVideoSDK.sharedInstance()?.getSession()?.getMySelf()?.getVideoCanvas(), let myVideoIsOn = myUserVideoCanvas.videoStatus()?.on {
                             if myVideoIsOn {
                                 Task(priority: .background) {
                                     await MainActor.run {
@@ -172,9 +172,9 @@ extension SessionView {
 
         // Local user - toggle video on/off
         func toggleVideo() {
-            if let usersVideoCanvas = ZoomVideoSDK.shareInstance()?.getSession()?.getMySelf()?.getVideoCanvas(),
+            if let usersVideoCanvas = ZoomVideoSDK.sharedInstance()?.getSession()?.getMySelf()?.getVideoCanvas(),
                // Get ZoomVideoSDKVideoHelper to control video
-               let videoHelper = ZoomVideoSDK.shareInstance()?.getVideoHelper()
+               let videoHelper = ZoomVideoSDK.sharedInstance()?.getVideoHelper()
             {
                 if let myVideoIsOn = usersVideoCanvas.videoStatus()?.on,
                    myVideoIsOn == true
@@ -198,11 +198,11 @@ extension SessionView {
 
         // Local user - toggle audio mic unmute/mute
         func toggleAudio() {
-            let myUser = ZoomVideoSDK.shareInstance()?.getSession()?.getMySelf()
+            let myUser = ZoomVideoSDK.sharedInstance()?.getSession()?.getMySelf()
             // Get the user's audio status
             if let audioStatus = myUser?.audioStatus(),
                // Get ZoomVideoSDKAudioHelper to control audio
-               let audioHelper = ZoomVideoSDK.shareInstance()?.getAudioHelper()
+               let audioHelper = ZoomVideoSDK.sharedInstance()?.getAudioHelper()
             {
                 // Check if the user's audio type is none - Not connected yet
                 if audioStatus.audioType == .none {
@@ -236,7 +236,7 @@ extension SessionView {
         }
 
         func leaveSession() {
-            ZoomVideoSDK.shareInstance()?.leaveSession(true)
+            ZoomVideoSDK.sharedInstance()?.leaveSession(true)
         }
     }
 }
